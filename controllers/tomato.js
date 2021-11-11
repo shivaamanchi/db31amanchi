@@ -1,8 +1,28 @@
 var tomato = require('../models/tomato'); 
  
-// List of all Costumes 
-exports.tomato_list = function(req, res) { 
-    res.send('NOT IMPLEMENTED: tomato list'); 
+// List of all tomato 
+// List of all tomato 
+exports.tomato_list = async function(req, res) { 
+    try{ 
+        thetomato = await tomato.find(); 
+        res.send(thetomato); 
+    } 
+    catch(err){ 
+        res.status(500); 
+        res.send(`{"error": ${err}}`); 
+    }   
+}; 
+// VIEWS 
+// Handle a show all view 
+exports.tomato_view_all_Page = async function(req, res) { 
+    try{ 
+        thetomato = await tomato.find(); 
+        res.render('tomato', { title: 'tomato Search Results', results: thetomato }); 
+    } 
+    catch(err){ 
+        res.status(500); 
+        res.send(`{"error": ${err}}`); 
+    }   
 }; 
  
 // for a specific Costume. 
