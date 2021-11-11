@@ -31,9 +31,24 @@ exports.tomato_detail = function(req, res) {
 }; 
  
 // Handle Costume create on POST. 
-exports.tomato_create_post = function(req, res) { 
-    res.send('NOT IMPLEMENTED: tomato create POST'); 
+// Handle Costume create on POST. 
+exports.tomato_create_post = async function(req, res) { 
+    console.log(req.body) 
+    let document = new tomato(); 
+    
+    document.type = req.body.type; 
+    document.expdate = req.body.expdate; 
+    document.cost = req.body.cost; 
+    try{ 
+        let result = await document.save(); 
+        res.send(result); 
+    } 
+    catch(err){ 
+        res.status(500); 
+        res.send(`{"error": ${err}}`); 
+    }   
 }; 
+ 
  
 // Handle Costume delete form on DELETE. 
 exports.tomato_delete = function(req, res) { 
