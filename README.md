@@ -2,7 +2,7 @@
 
 Positivity always wins
 
-[hosted at](https://dashboard.heroku.com/apps/fwb31amanchi)
+[heroku hosted at](https://db31amanchi.herokuapp.com/)
 
 Class: Tomato
 Attributes: type, expdate, cost.
