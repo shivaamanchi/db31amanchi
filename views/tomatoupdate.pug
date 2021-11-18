@@ -1,0 +1,45 @@
+extends layout
+
+block content
+  h1= title
+   if (toShow == null)
+    h2 No instance to Update
+   else
+  - let tomatoid = toShow._id 
+  - let type = toShow.type
+  - let expdate = toShow.expdate 
+  - let cost = toShow.cost
+   
+  div.row(class='mb-2') 
+    div.mr-1 ID is 
+    div #{tomatoid} 
+  - let actionid = "/resource/tomato/" + tomatoid 
+  form(id='tomatoForm', action= actionid, method="PUT") 
+    div.form-group 
+        label.tomatoAttr(for='type') type
+        input#type(type='text', name='type', value= type ) 
+    div.form-group 
+        label.tomatoAttr(for='expdate') expdate
+        input#expdate(type='text', name='expdate', value= expdate) 
+    div.form-group 
+        label.tomatoAttr(for='cost') cost
+        input#cost(type='number', name='cost', value= cost) 
+    input(type="submit") 
+ 
+  script.
+    document.forms['tomatoForm'].addEventListener('submit', (event) => {
+      event.preventDefault();
+      // TODO do something here to show user that form is being submitted 
+      fetch(event.target.action, {
+        method: 'PUT',
+        body: new URLSearchParams(new FormData(event.target)) // event.target is the form 
+      }).then((resp) => {
+        return resp.text(); // or resp.text() or whatever the server sends 
+      }).then((body) => {
+        alert("Update succeded")
+        // TODO handle body
+      }).catch((error) => {
+        // TODO handle error
+        alert("Update failed " + error )
+      }); 
+    });

@@ -10,7 +10,7 @@ var tomato_controller = require('../controllers/tomato');
 // GET resources base. 
 router.get('/', api_controller.api); 
  
-/// tomato ROUTES /// 
+/// tomato ROUTES ///  
  
 // POST request for creating a tomato.  
 router.post('/tomato', tomato_controller.tomato_create_post); 
@@ -19,8 +19,7 @@ router.post('/tomato', tomato_controller.tomato_create_post);
 router.delete('/tomato/:id', tomato_controller.tomato_delete); 
  
 // PUT request to update tomato. 
-router.put('/tomato/:id', 
-tomato_controller.tomato_update_put); 
+router.put('/tomato/:id', tomato_controller.tomato_update_put); 
  
 // GET request for one tomato. 
 router.get('/tomato/:id', tomato_controller.tomato_detail); 

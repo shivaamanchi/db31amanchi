@@ -1,0 +1,24 @@
+extends layout
+
+block content
+  h1(class="Title")= title
+   if (toShow == null)
+    h2 No instance to Update
+   else
+  - let tomatoid = toShow._id 
+  - let type = toShow.type 
+  - let expdate = toShow.expdate 
+  - let cost = toShow.cost  
+  div 
+    div.row 
+      div(class='tomatoAttr mr-3') tomato ID is: 
+      div #{tomatoid} 
+    div.row 
+      div(class='tomatoAttr mr-3') tomato Type is: 
+      div #{type} 
+    div.row 
+      div(class='tomatoAttr mr-3') tomato expdate  is: 
+      div #{expdate} 
+    div.row 
+      div(class='tomatoAttr mr-3') tomato Cost is: 
+      div #{cost} 

@@ -1,8 +1,8 @@
 const mongoose = require("mongoose")
-const tomatoPriceSchema = mongoose.Schema({
+const tomatoSchema = mongoose.Schema({
     type: String,
     expdate: String,
     cost: Number
 })
-module.exports = mongoose.model("Tomato",
-    tomatoPriceSchema)
+module.exports = mongoose.model("tomato",
+    tomatoSchema)

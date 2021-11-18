@@ -6,3 +6,18 @@ body {
 a {
   color: #00B7FF;
 }
+
+.tomatoAttr { 
+  background-color: yellow;
+  width: 200px;
+  margin: 5px;
+  text-align: center;
+  color: blue;
+  padding: 10px;
+  border-radius: 5px;
+} 
+.Title{
+  color: pink;
+  font-weight: 500;
+  font-family: sans-serif;
+}
