@@ -4,5 +4,4 @@ const tomatoSchema = mongoose.Schema({
     expdate: String,
     cost: Number
 })
-module.exports = mongoose.model("tomato",
-    tomatoSchema)
+module.exports = mongoose.model("tomato",tomatoSchema)

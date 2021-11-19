@@ -1,18 +1,19 @@
-extends layout
+extends layout 
 
 block content
   h1= title
-  p Welcome to the tomato pug
-  div(class="container-fluid")
-        div(class="row")
-            -
-                let tomato = results
-            each b,index in tomato
-                div(class="col-sm-2" onclick=`buy(${index})`) #{b.type}
-                div(class="col-sm-2" onclick=`buy(${index})`) #{b.expdate}
-                div(class="col-sm-2" onclick=`buy(${index})`) #{b.cost}
-  script.                
-        function buy(itemNo)
-        {
-              alert(`you purchased Item ${itemNo+1}`)
-        }
+  - let tomato = results;
+  script.
+    function buy(x){
+      alert('Purchased Item: ' + x)
+   } 
+  div(class='container-fluid')
+    div(class='row m-1')
+      each m, index in tomato 
+       - let destination = `dispatch(\"/tomato/update?id=${m._id}\")` 
+       div(class="col-sm-2" onclick=`buy(${index})`) #{m.type} #{m.expdate} #{m.cost}
+       button.btn( class="btn-primary ml-1", onclick= destination) Update 
+  script. 
+    function dispatch(path){ 
+      window.location.href=path 
+    }
