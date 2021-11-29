@@ -11,7 +11,7 @@ const tomatoSchema = mongoose.Schema({
     cost: {
         type:Number,
         min:1,
-        max:500
+        max:9.5
     }
     })
 module.exports = mongoose.model("tomato",
