@@ -1,7 +1,18 @@
 const mongoose = require("mongoose")
 const tomatoSchema = mongoose.Schema({
-    type: String,
+    type:{
+        type: String,
+        minLength: 3,
+        maxLength: 50
+    },
+    
     expdate: String,
-    cost: Number
-})
-module.exports = mongoose.model("tomato",tomatoSchema)
+    
+    cost: {
+        type:Number,
+        min:1,
+        max:500
+    }
+    })
+module.exports = mongoose.model("tomato",
+    tomatoSchema)

@@ -18,7 +18,7 @@ passport.use(new LocalStrategy(
   return done(null, user);
   });
   }));
-var tomatoPriceSchema = require("./models/tomato");
+
 
 const connectionString =
   process.env.MONGO_CON
@@ -35,6 +35,7 @@ var usersRouter = require('./routes/users');
 var tomatoRouter = require('./routes/tomato');
 var addmodsRouter = require('./routes/addmods');
 var selectorRouter = require('./routes/selector');
+var tomatoPriceSchema = require("./models/tomato");
 var resourceRouter=require('./routes/resource');
 
 var app = express();
@@ -54,6 +55,7 @@ app.use(require('express-session')({
   }));
 app.use(passport.initialize());
 app.use(passport.session());
+
 app.use(express.static(path.join(__dirname, 'public')));
 async function recreateDB() {
   // Delete everything
@@ -100,12 +102,13 @@ app.use('/resource',resourceRouter);
 // Use the existing connection
 // The Account model
 var Account =require('./models/account');
+
 passport.use(new LocalStrategy(Account.authenticate()));
 passport.serializeUser(Account.serializeUser());
 passport.deserializeUser(Account.deserializeUser());
 
 // catch 404 and forward to error handler
-app.use(function(err, req, res, next) {
+app.use(function(req, res, next) {
   next(createError(404));
 });
 

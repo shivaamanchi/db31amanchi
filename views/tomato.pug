@@ -1,19 +1,31 @@
-extends layout 
+extends layout
 
 block content
+
+  -let destinations1 = `dispatch(\"/tomato/create\")`
+   button.btn( class="btn-primary m-1", onclick= destinations1) Create
+ 
   h1= title
-  - let tomato = results;
-  script.
-    function buy(x){
-      alert('Purchased Item: ' + x)
-   } 
-  div(class='container-fluid')
-    div(class='row m-1')
-      each m, index in tomato 
-       - let destination = `dispatch(\"/tomato/update?id=${m._id}\")` 
-       div(class="col-sm-2" onclick=`buy(${index})`) #{m.type} #{m.expdate} #{m.cost}
-       button.btn( class="btn-primary ml-1", onclick= destination) Update 
-  script. 
+  - let tomato =results;
+  div(class="container-fluid mt-3")
+   div(class="row m-1")
+    each element in tomato 
+     -let destination=`buy(\"/tomato/update?id=${element._id}\")`
+     -let destinations2 = `dispatch(\"/tomato/detail?id=${element._id}\")`
+     -let destinations3 = `dispatch(\"/tomato/delete?id=${element._id}\")`
+     div(class="col-sm-6 bg-secondary m-1 p-3") tomato  #{element.type} - #{element.expdate} - #{element.cost}
+      button.btn( class="btn-info ml-2", onclick=destination ) Update
+      button.btn( class="btn-success m-1", onclick= destinations2) Detail
+      button.btn( class="btn-danger m-1", onclick= destinations3) Delete
+  
+   script.
+    function buy(path){
+        window.location.href=path
+
+        //alert(`You purchased Item ${a+1}`)
+      }
+
+   script. 
     function dispatch(path){ 
       window.location.href=path 
     }
